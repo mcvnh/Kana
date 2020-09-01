@@ -9,12 +9,12 @@
 import Foundation
 
 public struct KanaTable {
-    let values: [[Kana]]
-    var count: Int {
+    public let values: [[Kana]]
+    public var count: Int {
         return values.count
     }
 
-    subscript(row: Int) -> [Kana] {
+    public subscript(row: Int) -> [Kana] {
         return values[row]
     }
 }
