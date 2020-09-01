@@ -13,9 +13,9 @@ public struct Kana: Equatable {
 
     // MARK: - Properties
 
-    let romaji: String?
-    let katakana: String?
-    let hiragana: String?
+    public let romaji: String?
+    public let katakana: String?
+    public let hiragana: String?
 
 
     // MARK: - Enums
