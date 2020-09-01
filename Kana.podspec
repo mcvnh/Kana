@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
 spec.name           = "Kana"
 spec.version        = "1.0.0"
-spec.summary        = ""
+spec.summary        = " An utitity Swift package to generate Japanese basic characters or convert between Katakana, Hiragana, and Romaji "
 
 spec.homepage       = "https://github.com/anhmv/Kana"
 spec.license        = { :type => "MIT", :file => "LICENSE" }
