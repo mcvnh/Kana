@@ -1,0 +1,16 @@
+branches:
+  only:
+    - master
+
+os:
+  - osx
+  - ios
+
+language: swift
+osx_image: xcode11
+install: swift package update
+script:
+  - xcodebuild test -scheme Kana -destination platform="macOS" -enableCodeCoverage YES
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
