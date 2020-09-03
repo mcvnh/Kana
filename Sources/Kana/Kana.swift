@@ -7,9 +7,7 @@
 
 import Foundation
 
-public struct Kana: Equatable {
-
-    public static let invalidKana = Kana()
+public struct Kana: Equatable, Hashable {
 
     // MARK: - Properties
 
@@ -17,6 +15,17 @@ public struct Kana: Equatable {
     public let katakana: String?
     public let hiragana: String?
 
+    public var isInvalid: Bool {
+        if romaji == nil || katakana == nil || hiragana == nil {
+            return true
+        }
+
+        return false
+    }
+
+    public var isValid: Bool {
+        return !self.isInvalid
+    }
 
     // MARK: - Enums
 
@@ -26,25 +35,13 @@ public struct Kana: Equatable {
         case romaji
     }
 
-    public enum VoiceType {
-        case seion
-        case dakuon
-        case yoon
-    }
-
     public enum KanaError: Error {
         case characterNotFound
     }
 
 
     // MARK: - Constructors
-
-    private init() {
-        romaji = nil
-        katakana = nil
-        hiragana = nil
-    }
-
+    
     public init(romaji: String) {
         if let hiragana = Kana.toHiragana(of: romaji, in: .romaji) {
             self.romaji = romaji
@@ -70,10 +67,6 @@ public struct Kana: Equatable {
 
     // MARK: - Static methods and properties
 
-    static let seionColumns = [0, 1, 3, 5, 7, 10, 11, 12, 13, 14, 15]
-    static let dakuonColumns = [2, 4, 6, 8, 9]
-    static let yoonColumns = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-
     static let romajiChart: [[String]] = [
         ["a", "ka", "ga", "sa" , "za" , "ta" , "da", "na", "ha", "ba", "pa", "ma", "ya", "ra", "wa", "n", "kya", "gya", "ja", "sha", "cha", "nya", "hya", "bya", "pya", "mya", "rya"],
         ["i", "ki", "gi", "shi", "ji",  "chi", "di", "ni", "hi", "bi", "pi", "mi", ""  , "ri", ""  , "" , "", "", "", "", "", "", "", "", "", "", ""],
@@ -98,22 +91,13 @@ public struct Kana: Equatable {
         ["オ", "コ", "ゴ", "ソ", "ゾ", "ト", "ド", "ノ", "ホ", "ボ", "ポ", "モ", "ヨ", "ロ", "ヲ" , "" , "キョ", "ギョ", "ジョ", "ショ", "チョ", "ニョ", "ヒョ", "ビョ", "ピョ", "ニョ", "リョ"],
     ]
 
-    public static func getTable(_ of: VoiceType) -> KanaTable {
-        var columns: [Int]?
-
-        switch of {
-        case .seion:
-            columns = seionColumns
-        case .dakuon:
-            columns = dakuonColumns
-        case .yoon:
-            columns = yoonColumns
-        }
+    public static func getTable(with keys: [KanaColumns.Keys]) -> KanaTable {
+        let columns: [Int] = keys.map { $0.rawValue }
 
         var kanaTable: [[Kana]] = []
         for i in 0..<romajiChart.count {
             kanaTable.append([])
-            for j in columns! {
+            for j in columns {
                 let romaji = romajiChart[i][j]
                 let kana = Kana(romaji: romaji)
                 kanaTable[i].append(kana)
@@ -211,15 +195,14 @@ public struct Kana: Equatable {
         }
     }
 
-    public static func random(in voiceType: VoiceType) -> Kana {
-        let table = getTable(voiceType)
+    public static func random(in table: KanaTable) -> Kana {
         var randomKana: Kana?
 
         while true {
             let row = Int.random(in: 0..<table.count)
             let col = Int.random(in: 0..<table[row].count)
 
-            if table[row][col] != invalidKana {
+            if table[row][col].isValid {
                 randomKana = table[row][col]
                 break
             }
@@ -228,10 +211,29 @@ public struct Kana: Equatable {
         return randomKana!
     }
 
-    public static func random(in voiceType: VoiceType, count number: Int) -> [Kana] {
-        return (0..<number).map { _ in
-            Kana.random(in: voiceType)
+    public static func random(with columns: [KanaColumns.Keys]) -> Kana {
+        let table = getTable(with: columns)
+        return self.random(in: table)
+    }
+
+    public static func random(in table: KanaTable, count number: Int, uniq repeatable: Bool = false) -> [Kana] {
+        if repeatable {
+            return (0..<number).map { _ in
+                Kana.random(in: table)
+            }
         }
+
+        var randomItems = Set<Kana>()
+        while randomItems.count < number {
+            randomItems.insert(Kana.random(in: table))
+        }
+
+        return Array(randomItems)
+    }
+
+    public static func random(with columns: [KanaColumns.Keys], count number: Int, uniq repeatable: Bool = false) -> [Kana] {
+        let table = getTable(with: columns)
+        return self.random(in: table, count: number, uniq: repeatable)
     }
 }
 
@@ -259,4 +261,3 @@ fileprivate extension CFStringTokenizer {
         return mutableString as String
     }
 }
-

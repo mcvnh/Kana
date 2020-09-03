@@ -17,5 +17,13 @@ public struct KanaTable {
     public subscript(row: Int) -> [Kana] {
         return values[row]
     }
+
+    public static func + (left: KanaTable, right: KanaTable) -> KanaTable {
+        let values: [[Kana]] = (0..<left.count).map { row in
+            return left[row] + right[row]
+        }
+
+        return KanaTable(values: values)
+    }
 }
 
