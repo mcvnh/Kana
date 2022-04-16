@@ -98,6 +98,10 @@ final class KanaTestCase: XCTestCase {
         let inputWithGyon = anotherInput
         let outputWithGyon = Kana.convert(inputWithGyon, to: .romaji)
         XCTAssertEqual(outputWithGyon, "sakuraishoukatakana")
+        
+        let inputWithDoubleConsonants = "よっつ"
+        let outputWithDoubleConsonants = Kana.convert(inputWithDoubleConsonants, to: .romaji)
+        XCTAssertEqual(outputWithDoubleConsonants, "yottsu")
     }
 
     func test_randomInVoiceType() {

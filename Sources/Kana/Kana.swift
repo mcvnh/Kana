@@ -172,8 +172,14 @@ public struct Kana: Equatable, Hashable {
         case .romaji:
             let hiragana = Array(tokenizer.hiragana)
             var translated: String = ""
+            var doubleConsonants = false
 
             for i in 0..<hiragana.count {
+                if ["っ", "ッ"].firstIndex(of: hiragana[i]) != nil {
+                    doubleConsonants = true
+                    continue
+                }
+                
                 if ["ゃ", "ょ", "ゅ"].firstIndex(of: hiragana[i]) != nil {
                     continue
                 }
@@ -181,14 +187,22 @@ public struct Kana: Equatable, Hashable {
                 if i + 1 < hiragana.count {
                     if ["ゃ", "ょ", "ゅ"].firstIndex(of: hiragana[i + 1]) != nil {
                         let gyon: String = "\(hiragana[i])\(hiragana[i + 1])"
-                        let romaji = Kana.toRomaji(of: gyon, in: .hiragana)!
+                        var romaji = Kana.toRomaji(of: gyon, in: .hiragana)!
+                        if doubleConsonants {
+                            romaji = romaji.prefix(1) + romaji
+                        }
                         translated += romaji
+                        doubleConsonants = false;
                         continue
                     }
                 }
 
-                let romaji = Kana.toRomaji(of: String(hiragana[i]), in: .hiragana) ?? String(hiragana[i])
+                var romaji = Kana.toRomaji(of: String(hiragana[i]), in: .hiragana) ?? String(hiragana[i])
+                if doubleConsonants {
+                    romaji = romaji.prefix(1) + romaji
+                }
                 translated += romaji
+                doubleConsonants = false;
             }
 
             return translated
