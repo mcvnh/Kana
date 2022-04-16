@@ -179,11 +179,11 @@ public struct Kana: Equatable, Hashable {
                     doubleConsonants = true
                     continue
                 }
-                
+
                 if ["ゃ", "ょ", "ゅ"].firstIndex(of: hiragana[i]) != nil {
                     continue
                 }
-                
+
                 if i + 1 < hiragana.count {
                     if ["ゃ", "ょ", "ゅ"].firstIndex(of: hiragana[i + 1]) != nil {
                         let gyon: String = "\(hiragana[i])\(hiragana[i + 1])"
@@ -192,7 +192,7 @@ public struct Kana: Equatable, Hashable {
                             romaji = romaji.prefix(1) + romaji
                         }
                         translated += romaji
-                        doubleConsonants = false;
+                        doubleConsonants = false
                         continue
                     }
                 }
@@ -202,7 +202,7 @@ public struct Kana: Equatable, Hashable {
                     romaji = romaji.prefix(1) + romaji
                 }
                 translated += romaji
-                doubleConsonants = false;
+                doubleConsonants = false
             }
 
             return translated
