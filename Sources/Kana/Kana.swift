@@ -91,9 +91,9 @@ public struct Kana: Equatable, Hashable {
         ["オ", "コ", "ゴ", "ソ", "ゾ", "ト", "ド", "ノ", "ホ", "ボ", "ポ", "モ", "ヨ", "ロ", "ヲ" , "" , "キョ", "ギョ", "ジョ", "ショ", "チョ", "ニョ", "ヒョ", "ビョ", "ピョ", "ニョ", "リョ"],
     ]
 
-    static let smallCharsHiragana : [String] = ["ぁ", "ぃ", "ぅ", "ぇ", "ぉ"]
-    static let smallCharsKatakana : [String] = ["ァ", "ィ", "ゥ", "ェ", "ォ"]
-    static let smallCharsRomaji : [String] = ["a", "i", "u", "e", "o"]
+    static let smallCharsHiragana: [String] = ["ぁ", "ぃ", "ぅ", "ぇ", "ぉ"]
+    static let smallCharsKatakana: [String] = ["ァ", "ィ", "ゥ", "ェ", "ォ"]
+    static let smallCharsRomaji: [String] = ["a", "i", "u", "e", "o"]
 
     public static func getTable(with keys: [KanaColumns.Keys]) -> KanaTable {
         let columns: [Int] = keys.map { $0.rawValue }
@@ -126,9 +126,9 @@ public struct Kana: Equatable, Hashable {
                     return romajiChart[row][col]
                 }
             }
-            
+
             if smallChart.firstIndex(of: String(character.suffix(1))) != nil {
-                let small = smallCharsRomaji[smallChart.firstIndex(of: String(character.suffix(1)))!];
+                let small = smallCharsRomaji[smallChart.firstIndex(of: String(character.suffix(1)))!]
 
                 let newChar = toRomaji(of: String(character.prefix(character.count - 1)), in: type)!
 
@@ -198,7 +198,7 @@ public struct Kana: Equatable, Hashable {
             var translated: String = ""
             var doubleConsonants = false
 
-            let smallChars : [String.Element] = ["ゃ", "ょ", "ゅ", "ぁ", "ぃ", "ぅ", "ぇ", "ぉ"]
+            let smallChars: [String.Element] = ["ゃ", "ょ", "ゅ", "ぁ", "ぃ", "ぅ", "ぇ", "ぉ"]
 
             for i in 0..<hiragana.count {
                 if hiragana[i] == "っ" {
