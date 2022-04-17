@@ -69,8 +69,8 @@ public struct Kana: Equatable, Hashable {
 
     static let romajiChart: [[String]] = [
         ["a", "ka", "ga", "sa" , "za" , "ta" , "da", "na", "ha", "ba", "pa", "ma", "ya", "ra", "wa", "n", "kya", "gya", "ja", "sha", "cha", "nya", "hya", "bya", "pya", "mya", "rya"],
-        ["i", "ki", "gi", "shi", "ji",  "chi", "di", "ni", "hi", "bi", "pi", "mi", ""  , "ri", ""  , "" , "", "", "", "", "", "", "", "", "", "", ""],
-        ["u", "ku", "gu", "su" , "zu" , "tsu", "du", "nu", "fu", "bu", "pu", "mu", "yu", "ru", ""  , "" , "kyu", "gyu", "ju", "shu", "chu", "nya", "hyu", "byu", "pyu", "myu", "ryu"],
+        ["i", "ki", "gi", "shi", "ji",  "chi", "ji", "ni", "hi", "bi", "pi", "mi", ""  , "ri", ""  , "" , "", "", "", "", "", "", "", "", "", "", ""],
+        ["u", "vu", "ku", "gu", "su" , "zu" , "tsu", "du", "nu", "fu", "bu", "pu", "mu", "yu", "ru", ""  , "" , "kyu", "gyu", "ju", "shu", "chu", "nya", "hyu", "byu", "pyu", "myu", "ryu"],
         ["e", "ke", "ge", "se" , "ze" , "te" , "de", "ne", "he", "be", "pe", "me", ""  , "re", ""  , "" , "", "", "", "", "", "", "", "", "", "", ""],
         ["o", "ko", "go", "so" , "zo" , "to" , "do", "no", "ho", "bo", "po", "mo", "yo", "ro", "wo", "" , "kyo", "gyo", "jo", "sho", "cho", "nyo", "hyo", "byo", "pyo", "myo", "ryo"],
     ]
@@ -78,7 +78,7 @@ public struct Kana: Equatable, Hashable {
     static let hiraganaChart: [[String]] = [
         ["あ", "か", "が", "さ", "ざ", "た", "だ", "な", "は", "ば", "ぱ", "ま", "や", "ら", "わ", "ん", "きゃ", "ぎゃ", "じゃ", "しゃ", "ちゃ", "にゃ", "ひゃ", "びゃ", "ぴゃ", "みゃ", "りゃ"],
         ["い", "き", "ぎ", "し", "じ", "ち", "ぢ", "に", "ひ", "び", "ぴ", "み", ""  , "り", "" ,  "" , "", "", "", "", "", "", "", "", "", "", ""],
-        ["う", "く", "ぐ", "す", "ず", "つ", "づ", "ぬ", "ふ", "ぶ", "ぷ", "む", "ゆ", "る", "" ,  "" , "きゅ", "ぎゅ", "じゅ", "しゅ", "ちゅ", "にゅ", "ひゅ", "びゅ", "ぴゅ", "みゅ", "りゅ"],
+        ["う", "ゔ", "く", "ぐ", "す", "ず", "つ", "づ", "ぬ", "ふ", "ぶ", "ぷ", "む", "ゆ", "る", "" ,  "" , "きゅ", "ぎゅ", "じゅ", "しゅ", "ちゅ", "にゅ", "ひゅ", "びゅ", "ぴゅ", "みゅ", "りゅ"],
         ["え", "け", "げ", "せ", "ぜ", "て", "で", "ね", "へ", "べ", "ぺ", "め", ""  , "れ", "" ,  "" , "", "", "", "", "", "", "", "", "", "", ""],
         ["お", "こ", "ご", "そ", "ぞ", "と", "ど", "の", "ほ", "ぼ", "ぽ", "も", "よ", "ろ", "を",  "" , "きょ", "ぎょ", "じょ", "しょ", "ちょ", "にょ", "ひょ", "びょ", "ぴょ", "にょ", "りょ"],
     ]
@@ -86,10 +86,14 @@ public struct Kana: Equatable, Hashable {
     static let katakanaChart: [[String]] = [
         ["ア", "カ", "ガ", "サ", "ザ", "タ", "ダ", "ナ", "ハ", "バ", "パ", "マ", "ヤ", "ユ", "ワ", "ン", "キャ", "ギャ", "ジャ", "シャ", "チャ", "ニャ", "ヒャ", "ビャ", "ピャ", "ニャ", "リャ"],
         ["イ", "キ", "ギ", "シ", "ジ", "チ", "ヂ", "ニ", "ヒ", "ビ", "ピ", "ミ", ""  , "リ", ""  , "" , "", "", "", "", "", "", "", "", "", "", ""],
-        ["ウ", "ク", "グ", "ス", "ズ", "ツ", "ヅ", "ヌ", "フ", "ブ", "プ", "ム", "ユ", "ル", ""  , "" , "キュ", "ギュ", "ジュ", "シュ", "チュ", "ニュ", "ヒュ", "ビュ", "ピュ", "ニュ", "リュ"],
+        ["ウ", "ヴ", "ク", "グ", "ス", "ズ", "ツ", "ヅ", "ヌ", "フ", "ブ", "プ", "ム", "ユ", "ル", ""  , "" , "キュ", "ギュ", "ジュ", "シュ", "チュ", "ニュ", "ヒュ", "ビュ", "ピュ", "ニュ", "リュ"],
         ["エ", "ケ", "ゲ", "セ", "ゼ", "テ", "デ", "ネ", "ヘ", "ベ", "ペ", "メ", ""  , "レ", ""  , "" , "", "", "", "", "", "", "", "", "", "", ""],
         ["オ", "コ", "ゴ", "ソ", "ゾ", "ト", "ド", "ノ", "ホ", "ボ", "ポ", "モ", "ヨ", "ロ", "ヲ" , "" , "キョ", "ギョ", "ジョ", "ショ", "チョ", "ニョ", "ヒョ", "ビョ", "ピョ", "ニョ", "リョ"],
     ]
+
+    static let smallCharsHiragana : [String] = ["ぁ", "ぃ", "ぅ", "ぇ", "ぉ"]
+    static let smallCharsKatakana : [String] = ["ァ", "ィ", "ゥ", "ェ", "ォ"]
+    static let smallCharsRomaji : [String] = ["a", "i", "u", "e", "o"]
 
     public static func getTable(with keys: [KanaColumns.Keys]) -> KanaTable {
         let columns: [Int] = keys.map { $0.rawValue }
@@ -113,10 +117,30 @@ public struct Kana: Equatable, Hashable {
                 ? hiraganaChart
                 : katakanaChart
 
+            let smallChart = type == .hiragana
+                ? smallCharsHiragana
+                : smallCharsKatakana
+
             for row in 0..<chart.count {
                 if let col = chart[row].firstIndex(of: character) {
                     return romajiChart[row][col]
                 }
+            }
+            
+            if smallChart.firstIndex(of: String(character.suffix(1))) != nil {
+                let small = smallCharsRomaji[smallChart.firstIndex(of: String(character.suffix(1)))!];
+
+                let newChar = toRomaji(of: String(character.prefix(character.count - 1)), in: type)!
+
+                if ["fu", "vu", "shi", "ji", "chi", "tsu"].firstIndex(of: newChar) != nil {
+                    return newChar.prefix(newChar.count - 1) + small
+                } else if newChar.hasSuffix("u") {
+                    return newChar.prefix(newChar.count - 1) + "w" + small
+                } else if newChar.hasSuffix("i") {
+                    return newChar.prefix(newChar.count - 1) + "y" + small
+                }
+
+                return newChar + small
             }
         }
 
@@ -174,18 +198,20 @@ public struct Kana: Equatable, Hashable {
             var translated: String = ""
             var doubleConsonants = false
 
+            let smallChars : [String.Element] = ["ゃ", "ょ", "ゅ", "ぁ", "ぃ", "ぅ", "ぇ", "ぉ"]
+
             for i in 0..<hiragana.count {
-                if ["っ", "ッ"].firstIndex(of: hiragana[i]) != nil {
+                if hiragana[i] == "っ" {
                     doubleConsonants = true
                     continue
                 }
 
-                if ["ゃ", "ょ", "ゅ"].firstIndex(of: hiragana[i]) != nil {
+                if smallChars.firstIndex(of: hiragana[i]) != nil {
                     continue
                 }
 
                 if i + 1 < hiragana.count {
-                    if ["ゃ", "ょ", "ゅ"].firstIndex(of: hiragana[i + 1]) != nil {
+                    if smallChars.firstIndex(of: hiragana[i + 1]) != nil {
                         let gyon: String = "\(hiragana[i])\(hiragana[i + 1])"
                         var romaji = Kana.toRomaji(of: gyon, in: .hiragana)!
                         if doubleConsonants {

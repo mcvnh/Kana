@@ -21,6 +21,18 @@ final class KanaTestCase: XCTestCase {
         XCTAssertNil(Kana.toRomaji(of: "", in: .hiragana))
         XCTAssertNil(Kana.toRomaji(of: "ab", in: .romaji))
         XCTAssertNil(Kana.toRomaji(of: "  ", in: .katakana))
+        
+        // https://en.wiktionary.org/wiki/ぁ
+        XCTAssertEqual(Kana.toRomaji(of: "じぇ", in: .hiragana), "je")
+        XCTAssertEqual(Kana.toRomaji(of: "つぁ", in: .hiragana), "tsa")
+        XCTAssertEqual(Kana.toRomaji(of: "ふぁ", in: .hiragana), "fa")
+        
+        XCTAssertEqual(Kana.toRomaji(of: "はぁ", in: .hiragana), "haa")
+        
+        XCTAssertEqual(Kana.toRomaji(of: "いぇ", in: .hiragana), "ye")
+        XCTAssertEqual(Kana.toRomaji(of: "くぃ", in: .hiragana), "kwi")
+        
+        XCTAssertEqual(Kana.toRomaji(of: "ファ", in: .katakana), "fa")
     }
 
     func test_toKatakana() {
@@ -99,9 +111,19 @@ final class KanaTestCase: XCTestCase {
         let outputWithGyon = Kana.convert(inputWithGyon, to: .romaji)
         XCTAssertEqual(outputWithGyon, "sakuraishoukatakana")
 
-        let inputWithDoubleConsonants = "よっつ"
+        let inputWithDoubleConsonants = "よッつ"
         let outputWithDoubleConsonants = Kana.convert(inputWithDoubleConsonants, to: .romaji)
         XCTAssertEqual(outputWithDoubleConsonants, "yottsu")
+        
+        let inputChiJiMuHiragana = "ちぢむ"
+        let outputChiJiMuHiragana = Kana.convert(inputChiJiMuHiragana, to: .romaji)
+        XCTAssertEqual(outputChiJiMuHiragana, "chijimu")
+        
+        let inputChiJiMuKatakana = "チジム"
+        let outputChiJiMuKatakana = Kana.convert(inputChiJiMuKatakana, to: .romaji)
+        XCTAssertEqual(outputChiJiMuKatakana, "chijimu")
+        
+        XCTAssertEqual(Kana.convert("アスファルトジャングル", to: .romaji), "asufarutojanguru")
     }
 
     func test_randomInVoiceType() {
@@ -152,7 +174,7 @@ final class KanaTestCase: XCTestCase {
         let numberOfSeions = withoutEmpty(seion)
 
         XCTAssertEqual(numberOfSeionWithEmptyCells, 55)
-        XCTAssertEqual(numberOfSeions, 46)
+        XCTAssertEqual(numberOfSeions, 47)
 
         let dakuon = Kana.getTable(with: KanaColumns.dakuon)
         let numberOfDakuonWithEmptyCells = dakuon.count * dakuon[0].count
@@ -166,6 +188,6 @@ final class KanaTestCase: XCTestCase {
         let numberOfYoons = withoutEmpty(yoon)
 
         XCTAssertEqual(numberOfYoonWithEmptyCells, 55)
-        XCTAssertEqual(numberOfYoons, 33)
+        XCTAssertEqual(numberOfYoons, 32)
     }
 }
