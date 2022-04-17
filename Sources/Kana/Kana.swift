@@ -68,9 +68,9 @@ public struct Kana: Equatable, Hashable {
     // MARK: - Static methods and properties
 
     static let romajiChart: [[String]] = [
-        ["a", "ka", "ga", "sa" , "za", "ta", "da", "na", "ha", "ba", "pa", "ma", "ya", "ra", "wa", "n", "kya", "gya", "ja", "sha", "cha", "nya", "hya", "bya", "pya", "mya", "rya"],
-        ["i", "ki", "gi", "shi", "ji",  "chi", "ji", "ni", "hi", "bi", "pi", "mi", "", "ri", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-        ["u", "vu", "ku", "gu", "su" , "zu", "tsu", "du", "nu", "fu", "bu", "pu", "mu", "yu", "ru", "", "", "kyu", "gyu", "ju", "shu", "chu", "nya", "hyu", "byu", "pyu", "myu", "ryu"],
+        ["a", "ka", "ga", "sa", "za", "ta", "da", "na", "ha", "ba", "pa", "ma", "ya", "ra", "wa", "n", "kya", "gya", "ja", "sha", "cha", "nya", "hya", "bya", "pya", "mya", "rya"],
+        ["i", "ki", "gi", "shi", "ji", "chi", "ji", "ni", "hi", "bi", "pi", "mi", "", "ri", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["u", "vu", "ku", "gu", "su" , "zu", "tsu", "du", "nu", "fu", "bu", "pu", "mu", "yu", "ru", "", "", "kyu", "gyu", "ju", "shu", "chu", "nyu", "hyu", "byu", "pyu", "myu", "ryu"],
         ["e", "ke", "ge", "se", "ze", "te", "de", "ne", "he", "be", "pe", "me", "", "re", "", "", "", "", "", "", "", "", "", "", "", "", ""],
         ["o", "ko", "go", "so", "zo", "to", "do", "no", "ho", "bo", "po", "mo", "yo", "ro", "wo", "", "kyo", "gyo", "jo", "sho", "cho", "nyo", "hyo", "byo", "pyo", "myo", "ryo"],
     ]
